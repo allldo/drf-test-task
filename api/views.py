@@ -19,7 +19,7 @@ def retrieve_vps(request, vps_id):
 
 @api_view(['POST'])
 def create_vps(request):
-    if request.data.get('cpu_cores') <=0:
+    if int(request.data.get('cpu_cores')) <=0:
         return Response(status=status.HTTP_400_BAD_REQUEST)
     vps = Vps.objects.create(cpu_cores=request.data.get('cpu_cores'), ram=request.data.get('ram'),
                              hdd=request.data.get('hdd'), status=request.data.get('status'))
